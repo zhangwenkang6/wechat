@@ -1,6 +1,5 @@
 module.exports = function formatMsg (data) {
-    switch(data.msgtype) {
-
+    switch(data.msgtype) {      
         case 'text':
             return `
                 <xml>
@@ -47,14 +46,14 @@ module.exports = function formatMsg (data) {
                     </Video>
                 </xml>
             `;
-
+            
         default: 
             return `
                 <xml>
                     <ToUserName><![CDATA[${data.touser}]]></ToUserName>
                     <FromUserName><![CDATA[${data.fromuser}]]></FromUserName>
                     <MsgType><![CDATA[text]]></MsgType>
-                    <Content><![CDATA[该类行不被支持]]></Content>
+                    <Content><![CDATA[该类型不被支持]]></Content>
                     <CreateTime>${data.msgtime}</CreateTime>
                 </xml>
             `;

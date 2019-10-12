@@ -19,15 +19,26 @@ function userMsg(wxmsg, retmsg) {
             retmsg.msgtype = 'text';
             return formatMsg(retmsg);
 
-        } else {
+        }else if(wxmsg.Content == 'who' || wxmsg.Content == '谁'){
+            retmsg.msg = '开发者(学生)：张文康'+'\n'+'学号：2017011995';
+            retmsg.msgtype = 'text';
+            return formatMsg(retmsg);
+        }else {
             retmsg.msg = wxmsg.Content;
             retmsg.msgtype = wxmsg.MsgType;
             return formatMsg(retmsg);
         }
-    } else {
+    } else if(wxmsg.MsgType == 'event'){
+        if(wxmsg.Event == "subscribe"){
+            retmsg.msg = '感谢您的关注';
+            retmsg.msgtype = 'text';
+            return formatMsg(retmsg);       
+        }
+    }else {
         switch(wxmsg.MsgType) {
             case 'image':
             case 'voice':
+            // case 'video':
                 retmsg.msg = wxmsg.MediaId;
                 retmsg.msgtype = wxmsg.MsgType;
                 break;
